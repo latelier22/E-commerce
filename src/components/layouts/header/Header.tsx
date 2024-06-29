@@ -1,3 +1,4 @@
+import React from "react"
 import { UserButton } from "@clerk/nextjs"
 import Link from "next/link"
 import NextTopLoader from "nextjs-toploader"
@@ -12,7 +13,8 @@ import InputSearch from "./InputSearch"
 import HiddenInput from "./HiddenInput"
 
 export default async function Header() {
-  let getBestSellersProduct: {data: BestSellersType} = await bestSellersProducts("product")
+  const getBestSellersProduct: {data: BestSellersType} = await bestSellersProducts("product")
+  console.log("getBestSellersProduct",getBestSellersProduct.data[0].attributes.product)
   return (
     <header className="border-b bg-base-100">
       <NextTopLoader color='var(--fallback-p,oklch(var(--p)/1))' />
@@ -41,9 +43,9 @@ export default async function Header() {
         <ul className="menu menu-vertical flex-1">
           <Links />
         </ul>
-        {getBestSellersProduct.data.data.attributes.product.data && <div className="flex-1 ">
-          <h2 className="my-2 font-bold">{getBestSellersProduct.data.data.attributes.name}</h2>
-          <BestSellerProduct product={getBestSellersProduct.data.data.attributes.product.data}/>
+        {getBestSellersProduct.data[0].attributes.product.data && <div className="flex-1 ">
+          <h2 className="my-2 font-bold">{getBestSellersProduct.data[0].attributes.name}</h2>
+          <BestSellerProduct product={getBestSellersProduct.data[0].attributes.product.data}/>
         </div>}
       </div>
       <div className="btm-nav z-40 lg:hidden">

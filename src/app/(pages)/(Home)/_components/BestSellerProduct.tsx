@@ -6,6 +6,7 @@ import { productType } from '@/types'
 import Image from 'next/image'
 
 export default function BestSellerProduct({product}: {product: productType}) {
+  console.log("product ds BestSellerProduct",product)
   return (
     <Link key={product.id} href={`/product-details/${product.id}`} className="card card-side mx-2 h-24 items-center shadow bg-base-100 border border-transparent hover:border-primary">
         <figure className='w-24 h-24 lg:w-0 lg:h-0 xl:w-24 xl:h-24 py-1'>

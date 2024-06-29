@@ -7,6 +7,8 @@ import Logo from '../header/Logo'
 
 export default async function Footer() {
     let getCategories:{data: BestCategoriesType} = await bestCategories()
+    console.log("bestCategories",getCategories.data[0].attributes.categories.data)
+
   return (
     <div className='bg-base-200 mt-8'>
        <footer className="footer p-10 text-base-content container-m">
@@ -33,7 +35,7 @@ export default async function Footer() {
             </nav>
             <nav>
                 <header className="footer-title">Categories</header> 
-                {getCategories.data.data.attributes.categories.data.slice(-4).map(category => {
+                {getCategories.data[0].attributes.categories.data.slice(-4).map(category => {
                     return <Link key={category.id} href={`/category/${category.attributes.slug}`} className='link link-hover'>{category.attributes.name}</Link>
                 })}
             </nav>

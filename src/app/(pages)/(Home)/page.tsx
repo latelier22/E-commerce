@@ -8,6 +8,7 @@ import ProductDetailsCard from '../product-details/[id]/_components/ProductDetai
 
 export default async function page() {
   let getBestSellersProduct: {data: BestSellersType} = await bestSellersProducts("product")
+  console.log("getBestSellersProduct ds Home",getBestSellersProduct)
   return (
     <div className="container-m mt-5 space-y-5 px-4">
       <Hero />
@@ -15,9 +16,9 @@ export default async function page() {
       <section className='flex lg:relative'>
         <SidebarMenu />
         <div className='lg:w-3/4 space-y-4'>
-          {getBestSellersProduct.data.data.attributes.product.data && <>
-              <h1 className='text-xl font-bold mt-2 ms-1 border-b pb-2'>{getBestSellersProduct.data.data.attributes.name}</h1>
-              <ProductDetailsCard isHome product={getBestSellersProduct.data.data.attributes.product.data}/>
+          {getBestSellersProduct.data[0].attributes.product.data && <>
+              <h1 className='text-xl font-bold mt-2 ms-1 border-b pb-2'>{getBestSellersProduct.data[0].attributes.name}</h1>
+              <ProductDetailsCard isHome product={getBestSellersProduct.data[0].attributes.product.data}/>
             </>}
           <h1 className='text-xl font-bold mt-2 ms-1 border-b pb-2'>New Products</h1>
           <ProductsSection />
