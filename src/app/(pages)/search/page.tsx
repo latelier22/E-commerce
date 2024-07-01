@@ -20,8 +20,8 @@ export default async function page({searchParams}: {searchParams : {title: strin
         </div>
         {typeof title === "string" && title.length > 0 && (
           <div>
-            {products.data.data.length > 0 ? <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-4 flex-wrap w-full'>
-                {products.data.data.map(product=> (
+            {products.data.length > 0 ? <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-4 flex-wrap w-full'>
+                {products.data.map(product=> (
                     <Product key={product.id} product={product} />
                 ))}
             </div> : 

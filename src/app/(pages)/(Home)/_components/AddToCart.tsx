@@ -11,7 +11,8 @@ export default function AddToCart({product, idItemInCart, className, productDeta
   function addItemToCart() {
     let data = {
       data : {
-        userId: user?.primaryEmailAddress?.id,
+        // userId: user?.primaryEmailAddress?.id,
+        email: user?.emailAddresses[0]?.emailAddress || '',
         username: user?.fullName,
         products: [product.id]
       }

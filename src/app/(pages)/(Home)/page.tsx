@@ -8,7 +8,7 @@ import ProductDetailsCard from '../product-details/[id]/_components/ProductDetai
 
 export default async function page() {
   let getBestSellersProduct: {data: BestSellersType} = await bestSellersProducts("product")
-  console.log("getBestSellersProduct ds Home",getBestSellersProduct)
+  //console.log("getBestSellersProduct ds Home",getBestSellersProduct)
   return (
     <div className="container-m mt-5 space-y-5 px-4">
       <Hero />

@@ -17,7 +17,7 @@ const CheckoutForm = () => {
   const [cartItems, setCartItems] = useState<CartItemsType | null>(null)
   async function getItems() {
     if (user) {
-      const cartItems: CartItemsType = await getCartItemsTwo(user?.primaryEmailAddressId || 'm')
+      const cartItems: CartItemsType = await getCartItemsTwo(user?.emailAddresses[0].emailAddress || 'm')
       setCartItems(cartItems)      
     }
   }
@@ -33,7 +33,7 @@ const CheckoutForm = () => {
       return;
     }
 
-    if (cartItems && cartItems.data.data.length === 0) {
+    if (cartItems && cartItems.data.length === 0) {
       setErrorMessage('Your cart is empty, please add product from products page to your cart')
       return;
     }
@@ -55,7 +55,8 @@ const CheckoutForm = () => {
       clientSecret,
       elements,
       confirmParams: {
-        return_url: "https://github.com/m7md0a",
+        return_url: "https://github.com/m7md0a"
+        // Ajoutez d'autres informations client si nécessaire
       },
     });
 

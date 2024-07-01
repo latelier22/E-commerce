@@ -9,7 +9,7 @@ export default async function ProductsSection() {
   return (
     <div>
        <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 flex-wrap w-full'>
-            {getProducts.data.data.map(product=> (
+            {getProducts.data.map(product=> (
               <Product key={product.id} product={product} />
             ))}
        </div>

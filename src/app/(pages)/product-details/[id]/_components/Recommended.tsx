@@ -6,7 +6,7 @@ import React from 'react'
 
 export default async function Recommended({category}:{category:CategoryType}) {
   let getProducts: {data: {data: productType[]}} = await productsByCategory(category?.attributes?.slug || "all")
-  if (getProducts.data.data.length === 0) {
+  if (getProducts.data.length === 0) {
     
 
     return <div>
@@ -17,8 +17,8 @@ export default async function Recommended({category}:{category:CategoryType}) {
     <div>
       <h1 className='text-lg font-medium mt-4'>Recommended Products</h1>
       <Card className="mt-2">
-          {getProducts.data.data.length > 0 ? <div className='card-body p-4 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5'>
-                {getProducts.data.data.slice(-5).map(product=> (
+          {getProducts.data.length > 0 ? <div className='card-body p-4 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5'>
+                {getProducts.data.slice(-5).map(product=> (
                     <Product key={product.id} product={product} />
                 ))}
             </div> : 

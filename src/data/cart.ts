@@ -1,18 +1,54 @@
-import customAxios, { customAxiosWithToken } from '../lib/axios';
+// api.ts
 
-export const addToCart = async (payload : {}) => {    
-    return await customAxiosWithToken.post('/carts', payload);
-}
+import { myFetch } from '../lib/myFetch';
 
-export const deleteFromCart = async (id : number) => {    
-    return await customAxiosWithToken.delete('/carts/'+id);
-}
+const baseURL = process.env.NEXT_PUBLIC_URL_API;
 
-export const getCartItems = async (userId: string) => {    
-    return await customAxios.get(`/carts?populate[products][populate]=banner&filters[userId][$eq]=${userId}`);
-}
+export const addToCart = async (payload: {}): Promise<any> => {
+    console.log("payload",payload)
+  try {
+    const response = await myFetch(`${baseURL}/api/carts`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+    return response;
+  } catch (error) {
+    console.error('Error adding to cart:', error);
+    throw error;
+  }
+};
 
-export const getCartItemsTwo = async (userId: string) => {    
-    return await customAxiosWithToken.get(`/carts?populate[products][populate]=banner&filters[userId][$eq]=${userId}`);
-}
+export const deleteFromCart = async (id: number): Promise<any> => {
+  try {
+    const response = await myFetch(`${baseURL}/api/carts/${id}`, {
+      method: 'DELETE',
+    });
+    return response;
+  } catch (error) {
+    console.error('Error deleting from cart:', error);
+    throw error;
+  }
+};
 
+export const getCartItems = async (email: string): Promise<any> => {
+  try {
+    const response = await myFetch(`${baseURL}/api/carts?populate[products][populate]=banner&filters[email][$eq]=${email}`);
+    return response;
+  } catch (error) {
+    console.error('Error fetching cart items:', error);
+    throw error;
+  }
+};
+
+export const getCartItemsTwo = async (email: string): Promise<any> => {
+  try {
+    const response = await myFetch(`${baseURL}/api/carts?populate[products][populate]=banner&filters[email][$eq]=${email}`);
+    return response;
+  } catch (error) {
+    console.error('Error fetching cart items (with token):', error);
+    throw error;
+  }
+};

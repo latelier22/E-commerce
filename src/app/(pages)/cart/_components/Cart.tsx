@@ -5,8 +5,8 @@ import { CartItemsType } from '../page';
 
 
 export function totalPrice(cartItems : CartItemsType){
-  if (cartItems && cartItems?.data.data.length > 0) {
-    const total =  cartItems.data.data.reduce((accumulator, currentValue) => {
+  if (cartItems && cartItems?.data.length > 0) {
+    const total =  cartItems.data.reduce((accumulator, currentValue) => {
       const price = currentValue.attributes.products.data[0].attributes.price;
       const disCount = currentValue.attributes.products.data[0].attributes.discount;
       const returns = accumulator + disCountFun(price, disCount)
@@ -29,13 +29,13 @@ export default function Cart({cartItemsData}: {cartItemsData: CartItemsType}) {
               </div>
               <div className='flex space-x-2 items-center'>
                 <span>Count :</span>
-                <span>{cartItemsData.data.data.length} Product</span>
+                <span>{cartItemsData.data.length} Product</span>
               </div> 
             </div>
             <Link href={`/checkout`} className='btn btn-primary'>Checkout</Link>
           </div>
           <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-4 flex-wrap w-full'>
-            {cartItemsData.data.data.length > 0 ? cartItemsData.data.data.map(item=> (
+            {cartItemsData.data.length > 0 ? cartItemsData.data.map(item=> (
               <div key={item.id}>
                 <Product key={item.attributes.products.data[0].id} product={item.attributes.products.data[0]} idItemInCart={item.id} />
               </div>

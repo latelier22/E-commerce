@@ -8,8 +8,8 @@ export default async function page() {
     <div className="container-m">
         <section>
             <h1 className="text-lg md:text-xl font-bold my-4">Products</h1>
-            {getProducts.data.data.length > 0 ? <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-4 flex-wrap w-full'>
-                {getProducts.data.data.map(product=> (
+            {getProducts.data.length > 0 ? <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-4 flex-wrap w-full'>
+                {getProducts.data.map(product=> (
                     <Product key={product.id} product={product} />
                 ))}
             </div> : 

@@ -23,8 +23,8 @@ export default async function page({params}: {params: Params}) {
     return product && (
       <div className="container-m">
         <section>
-          <ProductDetailsCard product={product.data.data}/>
-          <Recommended category={product.data.data.attributes.category.data}/>
+          <ProductDetailsCard product={product.data}/>
+          <Recommended category={product.data.attributes.category.data}/>
         </section>
       </div>
     )

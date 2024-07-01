@@ -9,7 +9,7 @@ export default async function MenuCategory() {
     <div className='bg-base-100 border rounded-box shadow'>
         <h3 className='px-4 pt-2 text-lg font-bold uppercase'>Categories</h3>
         <ul className="menu w-full">
-            {getCategories.data.data.map(category => (
+            {getCategories.data.map(category => (
               <li key={category.id}><Link href={`/category/${category.attributes.slug}`}>{category.attributes.name}</Link></li>
             ))}
         </ul>

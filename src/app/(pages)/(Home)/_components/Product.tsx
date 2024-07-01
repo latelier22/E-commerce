@@ -8,6 +8,8 @@ import AddToCart from './AddToCart'
 import Card from '@/components/global/Card'
 
 export default function Product({product, idItemInCart}: {product: productType, idItemInCart?: number}) {
+  const bannerImages = product.attributes.banner?.data || [];
+
   return (
     <div className='group'>
         <Card className='border w-full rounded-box shadow hover:border-primary'>
@@ -15,10 +17,36 @@ export default function Product({product, idItemInCart}: {product: productType, 
                 {product.attributes.discount > 0 && <div className='badge badge-success badge-sm md:badge-md text-base-100 font-medium absolute top-2 start-2'>{product.attributes.discount}%</div>}
                 {product.attributes.price === 0 && <div className='badge badge-success badge-sm md:badge-md text-base-100 font-medium absolute top-2 start-2'>Free</div>}
                 {product.attributes?.category?.data?.attributes?.name && <div className='badge badge-ghost badge-sm md:badge-md font-medium absolute bottom-2 start-2 capitalize'>{product.attributes?.category?.data?.attributes?.name}</div>}
-                {/* <Link href={`/product-details/${product.id}`}> */}
-                    <Image src={product.attributes.banner.data[1]?.attributes?.url ? product.attributes.banner.data[1].attributes.url : product.attributes.banner.data[0].attributes.url } width={400} height={100} alt={product.attributes.banner.data[0].attributes.alternativeText || 'this is alt'} className='hidden lg:group-hover:block' />
-                    <Image src={product.attributes.banner.data[0].attributes.url} width={400} height={100} alt='category' className='block lg:group-hover:hidden'/>
-                {/* </Link> */}
+                {bannerImages.length > 0 && (
+                <>
+                {bannerImages.length > 1 ? (
+                  <>
+                    <Image 
+                      src={`http://vps.latelier22.fr:1330${bannerImages[1]?.attributes?.url || bannerImages[0]?.attributes?.url}`} 
+                      width={400} 
+                      height={100} 
+                      alt={bannerImages[1]?.attributes?.alternativeText || 'this is alt'} 
+                      className='hidden lg:group-hover:block' 
+                    />
+                    <Image 
+                      src={`http://vps.latelier22.fr:1330${bannerImages[0].attributes.url}`} 
+                      width={400} 
+                      height={100} 
+                      alt='category' 
+                      className='block lg:group-hover:hidden'
+                    />
+                  </>
+                ) : (
+                  <Image 
+                    src={`http://vps.latelier22.fr:1330${bannerImages[0].attributes.url}`} 
+                    width={400} 
+                    height={100} 
+                    alt={bannerImages[0]?.attributes?.alternativeText || 'category'} 
+                  />
+                )}
+              </>
+              
+                )}
                 <div className='absolute top-6 end-0 flex flex-col space-y-1 translate-x-full group-hover:-translate-x-1 duration-300'>
                     <Link href={`/product-details/${product.id}`} className='btn btn-circle btn-sm text-primary'>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">

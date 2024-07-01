@@ -9,8 +9,8 @@ export default async function page({params}: {params: Params}) {
     <div className="container-m">
         <section>
             <h1 className="text-lg md:text-xl font-bold my-4">Products related to category {decodeURIComponent(params.slug)}</h1>
-            {getProductsByCategory.data.data.length > 0 ? <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-4 flex-wrap w-full'>
-                {getProductsByCategory.data.data.map(product=> (
+            {getProductsByCategory.data.length > 0 ? <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-4 flex-wrap w-full'>
+                {getProductsByCategory.data.map(product=> (
                     <Product key={product.id} product={product} />
                 ))}
             </div> : 

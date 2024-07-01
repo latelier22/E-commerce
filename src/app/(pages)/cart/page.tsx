@@ -8,8 +8,9 @@ export type CartItemsType = {data: {data: CartType[]}}
 
 export default async function page() {
   const userId = await currentUser()
+  console.log(userId)
   if (userId) {
-    const cartItems: CartItemsType = await getCartItems(userId.primaryEmailAddressId || '')
+    const cartItems: CartItemsType = await getCartItems(userId.emailAddresses[0].emailAddress || '')
     return <div>
       <Cart cartItemsData={cartItems}/>
     </div>

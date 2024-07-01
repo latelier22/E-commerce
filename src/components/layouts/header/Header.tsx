@@ -14,7 +14,7 @@ import HiddenInput from "./HiddenInput"
 
 export default async function Header() {
   const getBestSellersProduct: {data: BestSellersType} = await bestSellersProducts("product")
-  console.log("getBestSellersProduct",getBestSellersProduct.data[0].attributes.product)
+  //console.log("getBestSellersProduct",getBestSellersProduct.data[0].attributes.product)
   return (
     <header className="border-b bg-base-100">
       <NextTopLoader color='var(--fallback-p,oklch(var(--p)/1))' />

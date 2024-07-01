@@ -7,7 +7,7 @@ import Logo from '../header/Logo'
 
 export default async function Footer() {
     let getCategories:{data: BestCategoriesType} = await bestCategories()
-    console.log("bestCategories",getCategories.data[0].attributes.categories.data)
+    //console.log("bestCategories",getCategories.data[0].attributes.categories.data)
 
   return (
     <div className='bg-base-200 mt-8'>
